@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gallery | Lily Bui</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo-image">
+      <a href="index.html"><img src="Lilylogo.png" alt="Lily's Logo" /></a>
+    </div>
+    <ul>
+      <li>
+        <a href="projects.html">My Projects</a>
+      </li>
+      <li>
+        <a href="LilyResume.pdf" target="_blank" rel="noopener">My Resume</a>
+      </li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <section class="page-section gallery">
+    <h2>Gallery</h2>
+  
+    <!-- Main Tabs -->
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="photos">Photos & Videos</button>
+      <button class="tab-btn" data-tab="designs">Designs & Posters</button>
+    </div>
+  
+    <!-- Photos Tab -->
+    <div class="tab-content active" id="photos">
+      <div class="sub-tab-buttons">
+        <button class="sub-tab-btn active" data-subtab="college">College Stuff</button>
+        <button class="sub-tab-btn" data-subtab="life">Life Stuff</button>
+      </div>
+  
+      <!-- College Carousel -->
+      <div class="sub-tab-content active" id="college">
+        <div class="carousel-container">
+          <button class="carousel-arrow left">&#10094;</button>
+          <div class="carousel-track">
+            <img src="assets/photo1.jpg" alt="Photo 1">
+            <img src="assets/photo2.jpg" alt="Photo 2">
+            <!-- Add more images -->
+          </div>
+          <button class="carousel-arrow right">&#10095;</button>
+        </div>
+      </div>
+  
+      <!-- Life Carousel -->
+      <div class="sub-tab-content" id="life">
+        <div class="carousel-container">
+          <button class="carousel-arrow left">&#10094;</button>
+          <div class="carousel-track">
+            <video src="assets/video1.mp4" controls></video>
+            <video src="assets/video2.mp4" controls></video>
+            <!-- Add more videos -->
+          </div>
+          <button class="carousel-arrow right">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Designs Tab -->
+    <div class="tab-content" id="designs">
+      <div class="gallery-grid">
+        <img src="assets/poster1.png" alt="Poster 1" class="gallery-item" />
+        <img src="assets/flyer1.jpg" alt="Flyer 1" class="gallery-item" />
+      </div>
+    </div>
+  </section>
+  
+  <button id="backToTop">Back to Top</button>
+  <script src="script.js"></script>
+</body>
+</html>

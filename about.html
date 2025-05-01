@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Me | Lily Bui</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .about-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .about-text {
+      flex: 1 1 50%;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .about-text h2 {
+      color: #ffccf9;
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .about-photo {
+      flex: 1 1 40%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-photo img {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 30px;
+      object-fit: cover;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+      transition: transform 0.4s ease;
+    }
+
+    .about-photo img:hover {
+      transform: scale(1.05);
+    }
+
+    .favorites {
+      margin-top: 2rem;
+     
+      border-radius: 30px;
+      padding: 1rem;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+    }
+
+    .favorites h3 {
+      font-size: 1.8rem;
+      color: #ffd6ff;
+      margin-bottom: 1.5rem;
+    }
+
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .habit-card {
+      width: 500px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.0rem;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .habit-card:hover {
+      transform: scale(1.40);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .habit-card img {
+      width: 220px;
+      height: 220px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .habit-card span {
+      font-size: 1rem;
+      color: #fdfdfd;
+    }
+    
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo-image">
+      <a href="index.html"><img src="Lilylogo.png" alt="Lily's Logo" /></a>
+    </div>
+    <ul>
+      <li>
+        <a href="projects.html">My Projects</a>
+        <ul>
+          <li><a href="#">Web Design</a></li>
+          <li><a href="#">UI/UX</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="LilyResume.pdf" target="_blank" rel="noopener">My Resume</a>
+      </li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <section class="about-container">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          I'm an international student at UW Tacoma studying Information Technology.
+          I love creating beautiful, user-friendly designs with a focus on usability and functionality.
+          I’ve been passionate about creativity and tech since I was little, and UI/UX is the perfect match!
+        </p>
+        <p>
+          I enjoy working on projects that challenge me to think outside the box and push my creative boundaries.
+          My goal is to create designs that not only look good but also provide a seamless user experience.
+          I believe that design should be intuitive and accessible to everyone.
+          I’m always eager to learn new skills and stay updated with the latest design trends.
+        </p>
+      </div>
+      <div class="about-photo">
+        <img src="me.jpg" alt="Photo of Lily Bui" />
+      </div>
+    </div>
+  
+    <div class="favorites">
+      <h3>My Habits & Favorites 💖</h3>
+      <div class="favorites-grid">
+        <div class="habit-card">
+          <img src="boba.png" alt="Entrepreneurship" />
+          <span>On a journey to become an entrepreneur with my dream drink business</span>
+        </div>
+        <div class="habit-card">
+          <img src="canon r50.jpeg" alt="Editing" />
+          <span>Love editing videos and capturing creative moments.Taking aesthetic photos with good natural light</span>
+        </div>
+        <div class="habit-card">
+          <img src="valorant.jpg" alt="Gaming" />
+          <span>Playing games like Valorant and CS:GO to relax and compete</span>
+        </div>
+      <div class="habit-card">
+        <img src="matcha.jpg" alt="Matcha" />
+        <span>Drinking matcha and listening to chill music</span>
+      </div>
+      <div class="habit-card">
+        <img src="indoorplants.jpg" alt="Plants" />
+        <span>Obsessed with indoor plants and cozy spaces</span>
+      </div>
+      <div class="habit-card">
+        <img src="astronomy.jpeg" alt="Astronomy" />
+        <span>Fascinated by astronomy and space — stars, planets, and beyond</span>
+      </div>
+      
+    
+  </section>
+
+<!-- Contact -->
+<section class="contact">
+  <h2>Thanks for stopping by ✨</h2>
+  <p>Let's connect and create something amazing together!</p>
+  <p>Email me at <a href="mailto:lilybui@uw.edu">lilybui@uw.edu</a></p>
+  <p>
+    Connect with me on 
+    <a href="https://www.linkedin.com/in/ngoc-bui-388b98278/" target="_blank" class="linkedin-link">
+      LinkedIn 💼
+    </a>
+  </p>
+</section>
+  <button id="backToTop">Back to Top</button>
+  <script src="script.js"></script>
+</body>
+</html>
