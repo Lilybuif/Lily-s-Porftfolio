@@ -78,6 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
   contactLinks.forEach(link => {
     link.classList.add('animate-glow');
   });
+
+  initDesignProcess();
+  initFinalSolution();
+  initProjectOverview();
+  initProjectsSection();
 });
 
 // Event Listeners
@@ -196,3 +201,298 @@ document.addEventListener('DOMContentLoaded', function() {
     skillsGrid.style.animation = 'scrollLeft 20s linear infinite';
   });
 });
+
+// Design Process Animations
+function initDesignProcess() {
+  const processPhases = document.querySelectorAll('.process-phase');
+  const mediaItems = document.querySelectorAll('.media-item');
+  const metrics = document.querySelectorAll('.metric');
+  const userQuotes = document.querySelectorAll('.user-quote');
+
+  // Phase hover animations
+  processPhases.forEach(phase => {
+    phase.addEventListener('mouseenter', () => {
+      phase.style.transform = 'translateY(-5px)';
+      phase.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
+    });
+
+    phase.addEventListener('mouseleave', () => {
+      phase.style.transform = 'translateY(0)';
+      phase.style.boxShadow = 'none';
+    });
+  });
+
+  // Media gallery animations
+  mediaItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      const img = item.querySelector('img');
+      const caption = item.querySelector('.media-caption');
+      
+      img.style.transform = 'scale(1.1)';
+      caption.style.transform = 'translateY(0)';
+    });
+
+    item.addEventListener('mouseleave', () => {
+      const img = item.querySelector('img');
+      const caption = item.querySelector('.media-caption');
+      
+      img.style.transform = 'scale(1)';
+      caption.style.transform = 'translateY(100%)';
+    });
+  });
+
+  // Metrics animations
+  metrics.forEach(metric => {
+    metric.addEventListener('mouseenter', () => {
+      const value = metric.querySelector('.metric-value');
+      value.style.transform = 'scale(1.1)';
+      value.style.color = '#ff6b6b';
+    });
+
+    metric.addEventListener('mouseleave', () => {
+      const value = metric.querySelector('.metric-value');
+      value.style.transform = 'scale(1)';
+      value.style.color = 'var(--accent-color)';
+    });
+  });
+
+  // User quotes animations
+  userQuotes.forEach(quote => {
+    quote.addEventListener('mouseenter', () => {
+      quote.style.transform = 'translateY(-5px) rotate(1deg)';
+      quote.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
+    });
+
+    quote.addEventListener('mouseleave', () => {
+      quote.style.transform = 'translateY(0) rotate(0)';
+      quote.style.boxShadow = 'none';
+    });
+  });
+
+  // Scroll reveal animation for process phases
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateX(0)';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  processPhases.forEach((phase, index) => {
+    phase.style.opacity = '0';
+    phase.style.transform = `translateX(${index % 2 === 0 ? '-' : ''}50px)`;
+    phase.style.transition = 'all 0.6s ease-out';
+    observer.observe(phase);
+  });
+}
+
+function initFinalSolution() {
+  const features = document.querySelectorAll('.feature');
+  const impactMetrics = document.querySelectorAll('.impact-metrics li');
+  const solutionOverview = document.querySelector('.solution-overview');
+
+  // Feature card animations
+  features.forEach((feature, index) => {
+    feature.style.opacity = '0';
+    feature.style.transform = 'translateY(20px)';
+    feature.style.transition = `all 0.6s ease-out ${index * 0.2}s`;
+
+    feature.addEventListener('mouseenter', () => {
+      const img = feature.querySelector('.feature-img');
+      if (img) {
+        img.style.transform = 'scale(1.1)';
+      }
+    });
+
+    feature.addEventListener('mouseleave', () => {
+      const img = feature.querySelector('.feature-img');
+      if (img) {
+        img.style.transform = 'scale(1)';
+      }
+    });
+  });
+
+  // Impact metrics animations
+  impactMetrics.forEach((metric, index) => {
+    metric.style.opacity = '0';
+    metric.style.transform = 'translateY(20px)';
+    metric.style.transition = `all 0.6s ease-out ${index * 0.2}s`;
+
+    metric.addEventListener('mouseenter', () => {
+      metric.style.transform = 'translateY(-5px)';
+      metric.style.background = 'rgba(173, 69, 153, 0.2)';
+    });
+
+    metric.addEventListener('mouseleave', () => {
+      metric.style.transform = 'translateY(0)';
+      metric.style.background = 'rgba(173, 69, 153, 0.1)';
+    });
+  });
+
+  // Solution overview animation
+  if (solutionOverview) {
+    solutionOverview.style.opacity = '0';
+    solutionOverview.style.transform = 'translateY(20px)';
+    solutionOverview.style.transition = 'all 0.6s ease-out';
+  }
+
+  // Scroll reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  features.forEach(feature => observer.observe(feature));
+  impactMetrics.forEach(metric => observer.observe(metric));
+  if (solutionOverview) observer.observe(solutionOverview);
+}
+
+function initProjectOverview() {
+  const metaItems = document.querySelectorAll('.meta-item');
+  const overviewContent = document.querySelector('.overview-content');
+  const projectOverview = document.querySelector('.project-overview');
+
+  // Meta items animations
+  metaItems.forEach((item, index) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = `all 0.6s ease-out ${index * 0.1}s`;
+
+    item.addEventListener('mouseenter', () => {
+      const title = item.querySelector('h3');
+      if (title) {
+        title.style.color = '#ff6b6b';
+      }
+    });
+
+    item.addEventListener('mouseleave', () => {
+      const title = item.querySelector('h3');
+      if (title) {
+        title.style.color = 'var(--accent-color)';
+      }
+    });
+  });
+
+  // Overview content animation
+  if (overviewContent) {
+    overviewContent.style.opacity = '0';
+    overviewContent.style.transform = 'translateY(20px)';
+    overviewContent.style.transition = 'all 0.6s ease-out 0.3s';
+  }
+
+  // Project overview section animation
+  if (projectOverview) {
+    const heading = projectOverview.querySelector('h2');
+    if (heading) {
+      heading.style.opacity = '0';
+      heading.style.transform = 'translateY(20px)';
+      heading.style.transition = 'all 0.6s ease-out';
+    }
+  }
+
+  // Scroll reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  metaItems.forEach(item => observer.observe(item));
+  if (overviewContent) observer.observe(overviewContent);
+  if (projectOverview) {
+    const heading = projectOverview.querySelector('h2');
+    if (heading) observer.observe(heading);
+  }
+}
+
+// Project Navigation Enhancement
+document.addEventListener('DOMContentLoaded', function() {
+  const projectLinks = document.querySelectorAll('.project-navigation a');
+  
+  projectLinks.forEach(link => {
+    // Click animation
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetUrl = this.getAttribute('href');
+      
+      // Add click animation
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => {
+        this.style.transform = '';
+        window.location.href = targetUrl;
+      }, 150);
+    });
+
+    // Hover animation
+    link.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-5px)';
+    });
+
+    link.addEventListener('mouseleave', function() {
+      this.style.transform = '';
+    });
+  });
+});
+
+// Projects Section Animation
+function initProjectsSection() {
+  const projectCards = document.querySelectorAll('.index-project-card');
+  
+  // Initial styles
+  projectCards.forEach((card, index) => {
+    card.style.opacity = '0';
+    // Alternate the initial transform direction based on card position
+    const translateX = index % 2 === 0 ? '-50px' : '50px';
+    card.style.transform = `translateX(${translateX})`;
+  });
+
+  // Intersection Observer for reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.transition = 'all 0.6s ease';
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateX(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  projectCards.forEach(card => observer.observe(card));
+
+  // Add hover effect for project images
+  projectCards.forEach(card => {
+    const image = card.querySelector('.index-project-image img');
+    
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  });
+}
