@@ -496,3 +496,119 @@ function initProjectsSection() {
     });
   });
 }
+
+// About Page Animations
+document.addEventListener('DOMContentLoaded', () => {
+  // Add delay to habit cards
+  const habitCards = document.querySelectorAll('.habit-card');
+  habitCards.forEach((card, index) => {
+    card.style.setProperty('--delay', index);
+  });
+
+  // Parallax effect for about photo
+  const aboutPhoto = document.querySelector('.about-photo');
+  if (aboutPhoto) {
+    window.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      
+      const x = (clientX / innerWidth - 0.5) * 20;
+      const y = (clientY / innerHeight - 0.5) * 20;
+      
+      aboutPhoto.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  }
+
+  // Animate elements on scroll
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animated elements
+  document.querySelectorAll('.about-text, .about-photo, .favorites h3, .habit-card, .contact').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Smooth scroll for back to top button
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Add hover effect to habit cards
+  habitCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      card.style.transform = 'translateY(-10px)';
+      card.style.boxShadow = '0 20px 40px rgba(173, 69, 153, 0.2)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0)';
+      card.style.boxShadow = 'none';
+    });
+  });
+
+  // Add typing effect to about text
+  const aboutText = document.querySelector('.about-text p');
+  if (aboutText) {
+    const text = aboutText.textContent;
+    aboutText.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+      if (i < text.length) {
+        aboutText.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 20);
+      }
+    }
+    
+    // Start typing effect when element is in view
+    const textObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        typeWriter();
+        textObserver.unobserve(aboutText);
+      }
+    }, { threshold: 0.5 });
+    
+    textObserver.observe(aboutText);
+  }
+
+  // Add particle effect to background
+  const container = document.querySelector('.about-container');
+  if (container) {
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.top = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      container.appendChild(particle);
+    }
+  }
+});
