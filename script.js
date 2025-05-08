@@ -126,80 +126,177 @@ projectCardsMouse.forEach(card => {
   });
 });
 
-const tabButtons = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
+// Gallery Tab Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Tab switching
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const subTabButtons = document.querySelectorAll('.sub-tab-btn');
+    const subTabContents = document.querySelectorAll('.sub-tab-content');
 
-tabButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Update button styles
-    tabButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
+    // Main tab switching
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and contents
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
 
-    // Fade out all tabs first
-    tabContents.forEach(content => {
-      content.classList.remove('active');
+            // Add active class to clicked button and corresponding content
+            button.classList.add('active');
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+
+            // Add animation
+            const activeContent = document.getElementById(tabId);
+            activeContent.style.opacity = '0';
+            setTimeout(() => {
+                activeContent.style.opacity = '1';
+            }, 50);
+        });
     });
 
-    const tabId = button.getAttribute('data-tab');
-    const selectedContent = document.getElementById(tabId);
+    // Sub-tab switching
+    subTabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all sub-buttons and contents
+            subTabButtons.forEach(btn => btn.classList.remove('active'));
+            subTabContents.forEach(content => content.classList.remove('active'));
 
-    // Delay fade-in to create smooth transition
-    setTimeout(() => {
-      selectedContent.classList.add('active');
-    }, 100);
-  });
-});
+            // Add active class to clicked button and corresponding content
+            button.classList.add('active');
+            const subTabId = button.getAttribute('data-subtab');
+            document.getElementById(subTabId).classList.add('active');
 
-// Main tab toggle
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const tab = btn.dataset.tab;
+            // Add animation
+            const activeContent = document.getElementById(subTabId);
+            activeContent.style.opacity = '0';
+            setTimeout(() => {
+                activeContent.style.opacity = '1';
+            }, 50);
+        });
+    });
 
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    // Carousel functionality
+    const carousels = document.querySelectorAll('.carousel-container');
+    
+    carousels.forEach(carousel => {
+        const track = carousel.querySelector('.carousel-track');
+        const leftButton = carousel.querySelector('.carousel-arrow.left');
+        const rightButton = carousel.querySelector('.carousel-arrow.right');
+        const items = carousel.querySelectorAll('.carousel-item');
+        
+        let currentIndex = 0;
+        const itemWidth = items[0].offsetWidth + 32; // Width + gap
 
-    btn.classList.add('active');
-    document.getElementById(tab).classList.add('active');
-  });
-});
+        // Smooth scroll function
+        const scrollToItem = (index) => {
+            track.style.scrollBehavior = 'smooth';
+            track.scrollLeft = index * itemWidth;
+        };
 
-// Sub-tab toggle
-document.querySelectorAll('.sub-tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const subtab = btn.dataset.subtab;
+        // Left button click
+        leftButton.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                scrollToItem(currentIndex);
+                addPulseAnimation(leftButton);
+            }
+        });
 
-    document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+        // Right button click
+        rightButton.addEventListener('click', () => {
+            if (currentIndex < items.length - 1) {
+                currentIndex++;
+                scrollToItem(currentIndex);
+                addPulseAnimation(rightButton);
+            }
+        });
 
-    btn.classList.add('active');
-    document.getElementById(subtab).classList.add('active');
-  });
-});
+        // Touch/swipe support
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-// Project carousel functionality
-const projectsWrapper = document.querySelector('.index-projects-wrapper');
-const indexProjectCards = document.querySelectorAll('.index-project-card');
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            track.style.cursor = 'grabbing';
+            startX = e.pageX - track.offsetLeft;
+            scrollLeft = track.scrollLeft;
+        });
 
-// Initialize the carousel
-projectsWrapper.style.transform = 'translateX(0)';
+        track.addEventListener('mouseleave', () => {
+            isDown = false;
+            track.style.cursor = 'grab';
+        });
 
-// Skills slider infinite loop
-document.addEventListener('DOMContentLoaded', function() {
-  const skillsGrid = document.querySelector('.skills-grid');
-  const skillItems = document.querySelectorAll('.skill-item');
-  
-  // Clone the skill items for seamless looping
-  skillItems.forEach(item => {
-    const clone = item.cloneNode(true);
-    skillsGrid.appendChild(clone);
-  });
+        track.addEventListener('mouseup', () => {
+            isDown = false;
+            track.style.cursor = 'grab';
+        });
 
-  // Reset animation when it reaches the end
-  skillsGrid.addEventListener('animationiteration', () => {
-    skillsGrid.style.animation = 'none';
-    skillsGrid.offsetHeight; // Trigger reflow
-    skillsGrid.style.animation = 'scrollLeft 20s linear infinite';
-  });
+        track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 2;
+            track.scrollLeft = scrollLeft - walk;
+        });
+    });
+
+    // Add pulse animation to buttons
+    function addPulseAnimation(button) {
+        button.classList.add('pulse');
+        setTimeout(() => {
+            button.classList.remove('pulse');
+        }, 300);
+    }
+
+    // Back to Top button
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Add hover effect to gallery items
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'translateY(-10px)';
+            const caption = item.querySelector('.gallery-caption');
+            if (caption) {
+                caption.style.transform = 'translateY(0)';
+            }
+        });
+
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'translateY(0)';
+            const caption = item.querySelector('.gallery-caption');
+            if (caption) {
+                caption.style.transform = 'translateY(100%)';
+            }
+        });
+    });
+
+    // Add loading animation
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        img.addEventListener('load', () => {
+            img.classList.add('loaded');
+        });
+    });
 });
 
 // Design Process Animations
@@ -455,27 +552,30 @@ function initProjectsSection() {
   // Initial styles
   projectCards.forEach((card, index) => {
     card.style.opacity = '0';
-    // Alternate the initial transform direction based on card position
-    const translateX = index % 2 === 0 ? '-50px' : '50px';
-    card.style.transform = `translateX(${translateX})`;
+    const translateX = index % 2 === 0 ? '-100px' : '100px';
+    card.style.transform = `translateX(${translateX}) scale(0.95)`;
   });
 
   // Intersection Observer for reveal animation
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.transition = 'all 0.6s ease';
+        entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
         entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateX(0)';
+        entry.target.style.transform = 'translateX(0) scale(1)';
       }
     });
-  }, { threshold: 0.1 });
+  }, { 
+    threshold: 0.2,
+    rootMargin: '0px'
+  });
 
   projectCards.forEach(card => observer.observe(card));
 
-  // Add hover effect for project images
+  // Enhanced hover effects for project cards
   projectCards.forEach(card => {
-    const image = card.querySelector('.index-project-image img');
+    const image = card.querySelector('.index-project-image');
+    const text = card.querySelector('.index-project-text');
     
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -485,14 +585,55 @@ function initProjectsSection() {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
+      const rotateX = (y - centerY) / 30;
+      const rotateY = (centerX - x) / 30;
       
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      // Apply 3D rotation to the card
+      card.style.transform = `
+        perspective(1000px)
+        rotateX(${rotateX}deg)
+        rotateY(${rotateY}deg)
+        scale3d(1.02, 1.02, 1.02)
+      `;
+      
+      // Parallax effect for the image
+      if (image) {
+        image.style.transform = `
+          translateX(${rotateY * 2}px)
+          translateY(${rotateX * 2}px)
+        `;
+      }
+      
+      // Subtle movement for text
+      if (text) {
+        text.style.transform = `
+          translateX(${rotateY * -1}px)
+          translateY(${rotateX * -1}px)
+        `;
+      }
     });
     
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+      if (image) image.style.transform = 'translateX(0) translateY(0)';
+      if (text) text.style.transform = 'translateX(0) translateY(0)';
+    });
+  });
+
+  // Add smooth scroll to project links
+  document.querySelectorAll('.index-project-card a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = link.getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
     });
   });
 }
