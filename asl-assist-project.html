@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASL Assist Application</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Astronomical Background Elements -->
+  <div class="astronomical-bg">
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+    <div class="shooting-stars"></div>
+    
+    <!-- Solar System -->
+    <div class="solar-system">
+      <div class="sun"></div>
+      
+      <div class="planet-orbit mercury">
+        <div class="planet mercury"></div>
+      </div>
+      
+      <div class="planet-orbit venus">
+        <div class="planet venus"></div>
+      </div>
+      
+      <div class="planet-orbit earth">
+        <div class="planet earth"></div>
+      </div>
+      
+      <div class="planet-orbit mars">
+        <div class="planet mars"></div>
+      </div>
+      
+      <div class="planet-orbit jupiter">
+        <div class="planet jupiter"></div>
+      </div>
+      
+      <div class="planet-orbit saturn">
+        <div class="planet saturn"></div>
+      </div>
+    </div>
+    
+    <!-- Flying Astronomer -->
+    <div class="astronomer">👨‍🚀</div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="cursor-trail" id="cursorTrail"></div>
+
+  <nav class="navbar">
+    <div class="logo-image">
+      <a href="index.html"><img src="media/images/Lilylogo.png" alt="Lily's Logo" /></a>
+    </div>
+    <ul>
+      <li>
+        <a href="projects.html">My Projects</a>
+      </li>
+      <li>
+        <a href="media/documents/Resume_Lily.pdf" target="_blank" rel="noopener">My Resume</a>
+      </li>
+      <li><a href="about.html">About Me</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+    <!-- Theme Toggle Button -->
+    <div class="theme-toggle">
+      <button id="themeToggle" class="theme-toggle-btn">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-icon">☀️</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="project-detail">
+    <div class="project-header">
+      <h1>ASL Assist Smart-Home Controller</h1>
+      <p class="project-subtitle">Hackathon Project | UHackathon – University of Washington Tacoma</p>
+      <div class="project-meta">
+        <span class="project-tag">Hackathon</span>
+        <span class="project-tag">Smart Home</span>
+        <span class="project-tag">Computer Vision</span>
+        <span class="project-tag">Azure</span>
+      </div>
+    </div>
+
+    <div class="project-info-container">
+      <div class="project-info-grid">
+        <div class="info-card">
+          <h3>Duration</h3>
+          <p>24 hours (Hackathon)</p>
+        </div>
+        <div class="info-card">
+          <h3>Team Size</h3>
+          <p>4 people</p>
+        </div>
+        <div class="info-card">
+          <h3>Tools Used</h3>
+          <p>Azure Custom Vision, JavaScript, Python, Webcam API, Smart-Home APIs</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-hero">
+      <div class="project-hero-image">
+        <img src="media/images/aslassist.png" alt="ASL Assist Application Hero Image">
+      </div>
+    </div>
+
+    <div class="project-content">
+      <div class="project-section">
+        <h2>Project Overview</h2>
+        <p>This hackathon project at UHackathon – University of Washington Tacoma focused on creating an innovative smart-home controller that uses American Sign Language (ASL) gestures to control home automation systems. The goal was to develop an accessible interface that allows users to control their smart home devices through ASL hand gestures.</p>
+      </div>
+
+      <div class="project-section">
+        <h2>Technical Implementation</h2>
+        <p>Integrated real-time gesture interface tied a webcam feed to our Azure Custom Vision model and routed its output (A-Z ASL letters) through JavaScript to invoke Python services and smart-home APIs.</p>
+      </div>
+
+      <div class="project-section">
+        <h2>Key Features</h2>
+        <ul>
+          <li>Real-time ASL gesture recognition using webcam feed</li>
+          <li>Azure Custom Vision model integration for A-Z letter detection</li>
+          <li>JavaScript-based gesture processing and routing</li>
+          <li>Python services for smart-home API integration</li>
+          <li>Responsive and accessible user interface</li>
+          <li>Smart-home device control through ASL gestures</li>
+          <li>Real-time feedback and gesture confirmation</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <h2>Technology Stack</h2>
+        <ul>
+          <li>Azure Custom Vision for machine learning</li>
+          <li>JavaScript for frontend processing</li>
+          <li>Python for backend services</li>
+          <li>Webcam integration for real-time gesture capture</li>
+          <li>Smart-home APIs for device control</li>
+          <li>Responsive web interface</li>
+        </ul>
+      </div>
+
+      <div class="project-section">
+        <h2>Impact</h2>
+        <p>This project demonstrated the potential of combining computer vision, machine learning, and accessibility design to create innovative smart-home solutions. It showcased how ASL can be used as a natural interface for controlling technology, making smart homes more accessible to the deaf and hard-of-hearing community.</p>
+      </div>
+    </div>
+  </div>
+
+  <button id="backToTop">Back to Top</button>
+  <script src="script.js"></script>
+</body>
+</html> 
