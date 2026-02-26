@@ -1,205 +1,155 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="scroll-smooth" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gallery</title>
+  <title>Gallery - Lily's Portfolio</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tailwind-custom.css" />
 </head>
-<body>
-  <!-- Astronomical Background Elements -->
-  <div class="astronomical-bg">
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    <div class="clouds"></div>
-    <div class="shooting-stars"></div>
-    
-    <!-- Solar System -->
-    <div class="solar-system">
-      <div class="sun"></div>
-      
-      <div class="planet-orbit mercury">
-        <div class="planet mercury"></div>
-      </div>
-      
-      <div class="planet-orbit venus">
-        <div class="planet venus"></div>
-      </div>
-      
-      <div class="planet-orbit earth">
-        <div class="planet earth"></div>
-      </div>
-      
-      <div class="planet-orbit mars">
-        <div class="planet mars"></div>
-      </div>
-      
-      <div class="planet-orbit jupiter">
-        <div class="planet jupiter"></div>
-      </div>
-      
-      <div class="planet-orbit saturn">
-        <div class="planet saturn"></div>
-      </div>
-    </div>
-    
-    <!-- Flying Astronomer -->
-    <div class="astronomer">👨‍🚀</div>
-  </div>
-
-  <!-- Custom Cursor -->
+<body class="starfield-bg text-white antialiased">
   <div class="custom-cursor" id="customCursor"></div>
   <div class="cursor-trail" id="cursorTrail"></div>
+  <div class="space-bg-layers" aria-hidden="true">
+    <div class="shooting-stars"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star shooting-star-2"></div>
+    <div class="shooting-star shooting-star-3"></div>
+  </div>
+  <div class="light-mode-bg-overlay" aria-hidden="true"></div>
 
   <nav class="navbar">
     <div class="logo-image">
       <a href="index.html"><img src="media/images/Lilylogo.png" alt="Lily's Logo" /></a>
     </div>
     <ul>
-      <li>
-        <a href="projects.html">My Projects</a>
-      </li>
-      <li>
-        <a href="media/documents/Resume_Lily.pdf" target="_blank" rel="noopener">My Resume</a>
-      </li>
-      <li><a href="about.html">About Me</a></li>
+      <li><a href="index.html#about">About Me</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experiences</a></li>
+      <li><a href="index.html#projects">My Projects</a></li>
+      <li><a href="media/documents/Resume_Lily.pdf" target="_blank" rel="noopener">My Resume</a></li>
       <li><a href="gallery.html">Gallery</a></li>
     </ul>
-    <!-- Theme Toggle Button -->
     <div class="theme-toggle">
-      <button id="themeToggle" class="theme-toggle-btn">
-        <span class="theme-icon">🌙</span>
-        <span class="theme-icon">☀️</span>
+      <span class="theme-toggle-label">Pull to switch</span>
+      <button id="themeToggle" class="light-switch-btn" aria-label="Toggle light mode">
+        <div class="light-switch-lamp">
+          <div class="light-bulb"></div>
+          <div class="lamp-cord"></div>
+          <div class="pull-string" id="pullString">
+            <span class="pull-ring"></span>
+          </div>
+        </div>
       </button>
     </div>
   </nav>
 
-  <div class="gallery">
-    <h2>My Creative Gallery</h2>
-    <p class="gallery-intro">A collection of my photography, design work, and creative moments that inspire my design process.</p>
+  <section class="pt-24 pb-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-4">
+        <span class="text-white">My Creative</span> <span class="gradient-text">Gallery</span>
+      </h2>
+      <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+        A collection of my photography, design work, and creative moments that inspire my design process.
+      </p>
 
-    <div class="tab-buttons">
-      <button class="tab-btn active" data-tab="photography">
-        <span class="tab-icon">📸</span>
-        Photography
-      </button>
-      <button class="tab-btn" data-tab="design">
-        <span class="tab-icon">🎨</span>
-        Design Work
-      </button>
-      <button class="tab-btn" data-tab="inspiration">
-        <span class="tab-icon">✨</span>
-        Inspiration
-      </button>
-    </div>
-
-<section class="gallery-section"></section>
-
-    <div id="photography" class="tab-content active">
-      <div class="sub-tab-buttons">
-        <button class="sub-tab-btn active" data-subtab="nature">Nature</button>
-        <button class="sub-tab-btn" data-subtab="urban">Urban</button>
-        <button class="sub-tab-btn" data-subtab="portraits">Portraits</button>
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button class="gallery-tab-btn active px-6 py-3 rounded-full border border-white/20 bg-[#7E48F8] font-medium transition" data-tab="photography">📸 Photography</button>
+        <button class="gallery-tab-btn px-6 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 font-medium transition" data-tab="design">🎨 Design Work</button>
+        <button class="gallery-tab-btn px-6 py-3 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 font-medium transition" data-tab="inspiration">✨ Inspiration</button>
       </div>
 
-      <div id="nature" class="sub-tab-content active">
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="media/images/sky.jpg" alt="Sky Photography" loading="lazy">
-            <div class="gallery-caption">
-              <h3>Sky Photography</h3>
-              <p>Capturing the beauty of natural light and clouds</p>
+      <div id="gallery-photography" class="gallery-tab-content active">
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          <button class="gallery-sub-tab-btn active px-4 py-2 rounded-lg bg-[#7E48F8] border border-white/20 text-sm" data-subtab="nature">Nature</button>
+          <button class="gallery-sub-tab-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/5 text-sm" data-subtab="urban">Urban</button>
+          <button class="gallery-sub-tab-btn px-4 py-2 rounded-lg border border-white/20 hover:bg-white/5 text-sm" data-subtab="portraits">Portraits</button>
+        </div>
+        <div id="gallery-nature" class="gallery-sub-content active">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card-glow rounded-xl overflow-hidden group">
+              <img src="media/images/sky.jpg" alt="Sky" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+              <div class="p-4"><h3 class="font-semibold">Sky Photography</h3><p class="text-gray-400 text-sm">Capturing the beauty of natural light and clouds</p></div>
             </div>
-          </div>
-          <div class="gallery-item">
-            <img src="media/images/indoorplants.jpg" alt="Indoor Plants" loading="lazy">
-            <div class="gallery-caption">
-              <h3>Indoor Plants</h3>
-              <p>Finding beauty in everyday natural elements</p>
+            <div class="card-glow rounded-xl overflow-hidden group">
+              <img src="media/images/indoorplants.jpg" alt="Indoor Plants" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+              <div class="p-4"><h3 class="font-semibold">Indoor Plants</h3><p class="text-gray-400 text-sm">Finding beauty in everyday natural elements</p></div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div id="urban" class="sub-tab-content">
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="media/images/spaceneedle.png" alt="Space Needle" loading="lazy">
-            <div class="gallery-caption">
-              <h3>Space Needle</h3>
-              <p>Iconic Seattle architecture</p>
+        <div id="gallery-urban" class="gallery-sub-content">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card-glow rounded-xl overflow-hidden group">
+              <img src="media/images/spaceneedle.png" alt="Space Needle" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+              <div class="p-4"><h3 class="font-semibold">Space Needle</h3><p class="text-gray-400 text-sm">Iconic Seattle architecture</p></div>
+            </div>
+          </div>
+        </div>
+        <div id="gallery-portraits" class="gallery-sub-content">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card-glow rounded-xl overflow-hidden group">
+              <img src="media/images/lily.jpg" alt="Portrait" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+              <div class="p-4"><h3 class="font-semibold">Portrait Photography</h3><p class="text-gray-400 text-sm">Capturing authentic moments</p></div>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="portraits" class="sub-tab-content">
-        <div class="gallery-grid">
-          <div class="gallery-item">
-            <img src="media/images/lily.jpg" alt="Portrait Photography" loading="lazy">
-            <div class="gallery-caption">
-              <h3>Portrait Photography</h3>
-              <p>Capturing authentic moments</p>
-            </div>
+      <div id="gallery-design" class="gallery-tab-content">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="card-glow rounded-xl overflow-hidden group">
+            <img src="media/images/aysa.png" alt="AYSA" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+            <div class="p-4"><h3 class="font-semibold">AYSA Website Design</h3><p class="text-gray-400 text-sm">Youth sports organization website redesign</p></div>
+          </div>
+          <div class="card-glow rounded-xl overflow-hidden group">
+            <img src="media/images/Bobaweb.png" alt="Bobaweb" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+            <div class="p-4"><h3 class="font-semibold">Bobaweb Business Design</h3><p class="text-gray-400 text-sm">Future boba business website concept</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="gallery-inspiration" class="gallery-tab-content">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="card-glow rounded-xl overflow-hidden group">
+            <img src="media/images/astronomy.jpeg" alt="Astronomy" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+            <div class="p-4"><h3 class="font-semibold">Astronomy</h3><p class="text-gray-400 text-sm">Space and stars inspire my creative process</p></div>
+          </div>
+          <div class="card-glow rounded-xl overflow-hidden group">
+            <img src="media/images/matcha.jpg" alt="Matcha" class="w-full h-64 object-cover group-hover:scale-105 transition" loading="lazy" />
+            <div class="p-4"><h3 class="font-semibold">Matcha & Coffee</h3><p class="text-gray-400 text-sm">Finding inspiration in simple pleasures</p></div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div id="design" class="tab-content">
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="media/images/aysa.png" alt="AYSA Design" loading="lazy">
-          <div class="gallery-caption">
-            <h3>AYSA Website Design</h3>
-            <p>Youth sports organization website redesign</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="media/images/Bobaweb.png" alt="Bobaweb Design" loading="lazy">
-          <div class="gallery-caption">
-            <h3>Bobaweb Business Design</h3>
-            <p>Future boba business website concept</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <footer class="footer-minimal py-10 border-t border-white/5 text-center">
+    <p class="text-gray-400 text-sm mb-1">Made with <span class="footer-accent">❤️</span> by <span class="footer-accent">Lily</span></p>
+    <p class="text-gray-500 text-xs">© 2026 All rights reserved.</p>
+  </footer>
 
-    <div id="inspiration" class="tab-content">
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="media/images/astronomy.jpeg" alt="Astronomy Inspiration" loading="lazy">
-          <div class="gallery-caption">
-            <h3>Astronomy</h3>
-            <p>Space and stars inspire my creative process</p>
-          </div>
-        </div>
-        <div class="gallery-item">
-          <img src="media/images/matcha.jpg" alt="Matcha Inspiration" loading="lazy">
-          <div class="gallery-caption">
-            <h3>Matcha & Coffee</h3>
-            <p>Finding inspiration in simple pleasures</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- Contact -->
-<section class="contact">
-  <h2>Thanks for stopping by ✨</h2>
-  <p>Let's connect and create something amazing together!</p>
-  <p>Email me at <a href="mailto:lilybui@uw.edu">lilybui@uw.edu</a></p>
-  <p>
-    Connect with me on 
-    <a href="https://www.linkedin.com/in/ngocphanbaobui/" target="_blank" rel="noopener" class="linkedin-link">
-      LinkedIn 💼
-    </a>
-  </p>
-</section>
-
-  <button id="backToTop">Back to Top</button>
+  <button id="backToTop" class="back-to-top-btn" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
   <script src="script.js"></script>
+  <script>
+    document.querySelectorAll('.gallery-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-tab-btn').forEach(b => { b.classList.remove('active', 'bg-[#7E48F8]'); b.classList.add('bg-white/5'); });
+        btn.classList.remove('bg-white/5'); btn.classList.add('active', 'bg-[#7E48F8]');
+        document.querySelectorAll('.gallery-tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById('gallery-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+    document.querySelectorAll('.gallery-sub-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-sub-tab-btn').forEach(b => { b.classList.remove('active', 'bg-[#7E48F8]'); b.classList.add('bg-transparent'); });
+        btn.classList.remove('bg-transparent'); btn.classList.add('active', 'bg-[#7E48F8]');
+        document.querySelectorAll('.gallery-sub-content').forEach(c => c.classList.remove('active'));
+        document.getElementById('gallery-' + btn.dataset.subtab).classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>

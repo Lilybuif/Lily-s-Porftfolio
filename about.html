@@ -1,143 +1,134 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" class="scroll-smooth" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Lily</title>
+  <title>About Lily - Creative UI/UX Designer</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tailwind-custom.css" />
 </head>
-<body>
-  <!-- Astronomical Background Elements -->
-  <div class="astronomical-bg">
-    <div class="stars"></div>
-    <div class="twinkling"></div>
-    <div class="clouds"></div>
-    <div class="shooting-stars"></div>
-    
-    <!-- Solar System -->
-    <div class="solar-system">
-      <div class="sun"></div>
-      
-      <div class="planet-orbit mercury">
-        <div class="planet mercury"></div>
-      </div>
-      
-      <div class="planet-orbit venus">
-        <div class="planet venus"></div>
-      </div>
-      
-      <div class="planet-orbit earth">
-        <div class="planet earth"></div>
-      </div>
-      
-      <div class="planet-orbit mars">
-        <div class="planet mars"></div>
-      </div>
-      
-      <div class="planet-orbit jupiter">
-        <div class="planet jupiter"></div>
-      </div>
-      
-      <div class="planet-orbit saturn">
-        <div class="planet saturn"></div>
-      </div>
-    </div>
-    
-    <!-- Flying Astronomer -->
-    <div class="astronomer">👨‍🚀</div>
-  </div>
-
-  <!-- Custom Cursor -->
+<body class="starfield-bg text-white antialiased">
   <div class="custom-cursor" id="customCursor"></div>
   <div class="cursor-trail" id="cursorTrail"></div>
+  <div class="space-bg-layers" aria-hidden="true">
+    <div class="shooting-stars"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star shooting-star-2"></div>
+    <div class="shooting-star shooting-star-3"></div>
+  </div>
+  <div class="light-mode-bg-overlay" aria-hidden="true"></div>
 
   <nav class="navbar">
     <div class="logo-image">
       <a href="index.html"><img src="media/images/Lilylogo.png" alt="Lily's Logo" /></a>
     </div>
     <ul>
-      <li>
-        <a href="projects.html">My Projects</a>
-      </li>
-      <li>
-        <a href="media/documents/Resume_Lily.pdf" target="_blank" rel="noopener">My Resume</a>
-      </li>
-      <li><a href="about.html">About Me</a></li>
+      <li><a href="index.html#about">About Me</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#experience">Experiences</a></li>
+      <li><a href="index.html#projects">My Projects</a></li>
+      <li><a href="media/documents/Resume_Lily.pdf" target="_blank" rel="noopener">My Resume</a></li>
       <li><a href="gallery.html">Gallery</a></li>
     </ul>
-    <!-- Theme Toggle Button -->
     <div class="theme-toggle">
-      <button id="themeToggle" class="theme-toggle-btn">
-        <span class="theme-icon">🌙</span>
-        <span class="theme-icon">☀️</span>
+      <span class="theme-toggle-label">Pull to switch</span>
+      <button id="themeToggle" class="light-switch-btn" aria-label="Toggle light mode">
+        <div class="light-switch-lamp">
+          <div class="light-bulb"></div>
+          <div class="lamp-cord"></div>
+          <div class="pull-string" id="pullString">
+            <span class="pull-ring"></span>
+          </div>
+        </div>
       </button>
     </div>
   </nav>
 
-  <div class="about-container">
-    <div class="about-content">
-      <div class="about-text">
-        <h2>About Me</h2>
-        <p>
+  <section class="pt-24 pb-24 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="text-5xl mb-4">🔭</div>
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">
+        <span class="text-gray-400">About</span> <span class="gradient-text">Me</span>
+      </h1>
+      <p class="text-gray-400 text-lg mb-12">
+        Passionate about blending creativity with technology to create exceptional digital experiences.
+      </p>
+      <div class="card-glow rounded-2xl p-8 md:p-12 text-left">
+        <p class="text-gray-300 leading-relaxed mb-4">
           Hi! I'm Lily, a passionate UI/UX designer and creative problem solver. I love combining my logical thinking with creative design to create meaningful user experiences.
         </p>
-        <p>
-          I enjoy working on projects that challenge me to think outside the box and push my creative boundaries.
-          My goal is to create designs that not only look good but also provide a seamless user experience.
-          I believe that design should be intuitive and accessible to everyone.
-          I’m always eager to learn new skills and stay updated with the latest design trends.
+        <p class="text-gray-300 leading-relaxed">
+          I enjoy working on projects that challenge me to think outside the box and push my creative boundaries. My goal is to create designs that not only look good but also provide a seamless user experience. I believe that design should be intuitive and accessible to everyone. I'm always eager to learn new skills and stay updated with the latest design trends.
         </p>
       </div>
-      <div class="about-photo">
-        <img src="media/images/me.jpg" alt="Photo of Lily Bui" />
+
+      <h2 class="text-2xl font-bold mt-16 mb-8">Things I Love</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card-glow rounded-xl p-6 text-center hover:scale-105 transition">
+          <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+            <img src="media/images/boba.png" alt="Entrepreneurship" class="w-full h-full object-cover" />
+          </div>
+          <p class="text-gray-300 text-sm">Passionate about entrepreneurship and understanding customer needs</p>
+        </div>
+        <div class="card-glow rounded-xl p-6 text-center hover:scale-105 transition">
+          <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+            <img src="media/images/canon r50.jpeg" alt="Photography" class="w-full h-full object-cover" />
+          </div>
+          <p class="text-gray-300 text-sm">Love editing videos and capturing creative moments with good natural light</p>
+        </div>
+        <div class="card-glow rounded-xl p-6 text-center hover:scale-105 transition">
+          <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+            <img src="media/images/valorant.jpg" alt="Gaming" class="w-full h-full object-cover" />
+          </div>
+          <p class="text-gray-300 text-sm">Playing games like Valorant and CS:GO to relax and compete</p>
+        </div>
+        <div class="card-glow rounded-xl p-6 text-center hover:scale-105 transition">
+          <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+            <img src="media/images/matcha.jpg" alt="Matcha" class="w-full h-full object-cover" />
+          </div>
+          <p class="text-gray-300 text-sm">Drinking matcha and listening to chill music</p>
+        </div>
+        <div class="card-glow rounded-xl p-6 text-center hover:scale-105 transition">
+          <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+            <img src="media/images/indoorplants.jpg" alt="Plants" class="w-full h-full object-cover" />
+          </div>
+          <p class="text-gray-300 text-sm">Obsessed with indoor plants and cozy spaces</p>
+        </div>
+        <div class="card-glow rounded-xl p-6 text-center hover:scale-105 transition">
+          <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4">
+            <img src="media/images/astronomy.jpeg" alt="Astronomy" class="w-full h-full object-cover" />
+          </div>
+          <p class="text-gray-300 text-sm">Fascinated by astronomy and space — stars, planets, and beyond</p>
+        </div>
       </div>
     </div>
-
-    <section class="favorites-section"></section>
-    <div class="favorites">
-      <h3>Things I Love</h3>
-      <div class="favorites-grid">
-        <div class="habit-card">
-          <img src="media/images/boba.png" alt="Entrepreneurship" />
-          <span>Passionate about entrepreneurship and understanding customer needs</span>
-        </div>
-        <div class="habit-card">
-          <img src="media/images/canon r50.jpeg" alt="Editing" />
-          <span>Love editing videos and capturing creative moments.Taking aesthetic photos with good natural light</span>
-        </div>
-        <div class="habit-card">
-          <img src="media/images/valorant.jpg" alt="Gaming" />
-          <span>Playing games like Valorant and CS:GO to relax and compete</span>
-        </div>
-      <div class="habit-card">
-        <img src="media/images/matcha.jpg" alt="Matcha" />
-        <span>Drinking matcha and listening to chill music</span>
-      </div>
-      <div class="habit-card">
-        <img src="media/images/indoorplants.jpg" alt="Plants" />
-        <span>Obsessed with indoor plants and cozy spaces</span>
-      </div>
-      <div class="habit-card">
-        <img src="media/images/astronomy.jpeg" alt="Astronomy" />
-        <span>Fascinated by astronomy and space — stars, planets, and beyond</span>
-      </div>
   </section>
 
-<!-- Contact -->
-<section class="contact">
-  <h2>Thanks for stopping by ✨</h2>
-  <p>Let's connect and create something amazing together!</p>
-  <p>Email me at <a href="mailto:lilybui@uw.edu">lilybui@uw.edu</a></p>
-  <p>
-    Connect with me on 
-    <a href="https://www.linkedin.com/in/ngocphanbaobui/" target="_blank" rel="noopener" class="linkedin-link">
-      LinkedIn 💼
-    </a>
-  </p>
-</section>
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">
+        <span class="text-white">Thanks for stopping by</span> <span>✨</span>
+      </h2>
+      <p class="text-gray-400 mb-6">Let's connect and create something amazing together!</p>
+      <p class="text-gray-300 mb-2">
+        Email me at <a href="mailto:ngocbaophanbui0301@gmail.com" class="gradient-text font-medium hover:underline">ngocbaophanbui0301@gmail.com</a>
+      </p>
+      <p class="text-gray-300">
+        Connect with me on
+        <a href="https://www.linkedin.com/in/ngocphanbaobui/" target="_blank" rel="noopener" class="gradient-text font-medium hover:underline">LinkedIn 💼</a>
+      </p>
+    </div>
+  </section>
 
-<button id="backToTop">Back to Top</button>
-<script src="script.js"></script>
+  <footer class="footer-minimal py-10 border-t border-white/5 text-center">
+    <p class="text-gray-400 text-sm mb-1">Made with <span class="footer-accent">❤️</span> by <span class="footer-accent">Lily</span></p>
+    <p class="text-gray-500 text-xs">© 2026 All rights reserved.</p>
+  </footer>
+
+  <button id="backToTop" class="back-to-top-btn" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+  <script src="script.js"></script>
 </body>
 </html>
-

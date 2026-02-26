@@ -7,12 +7,26 @@ function initThemeToggle() {
   const savedTheme = localStorage.getItem('theme') || 'dark';
   html.setAttribute('data-theme', savedTheme);
   
+  function updateToggleLabel() {
+    const theme = html.getAttribute('data-theme');
+    themeToggle.setAttribute('title', theme === 'dark' ? 'Pull to turn on light' : 'Pull to turn off light');
+  }
+
   themeToggle.addEventListener('click', () => {
+    const pullString = document.getElementById('pullString');
+    if (pullString) {
+      pullString.classList.remove('pulling');
+      void pullString.offsetWidth; // Force reflow to restart animation
+      pullString.classList.add('pulling');
+      setTimeout(() => pullString.classList.remove('pulling'), 600);
+    }
+
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
     html.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
+    updateToggleLabel();
     
     // Add transition effect
     html.style.transition = 'all 0.3s ease';
@@ -20,6 +34,8 @@ function initThemeToggle() {
       html.style.transition = '';
     }, 300);
   });
+
+  updateToggleLabel();
 }
 
 // Custom Cursor Effects
@@ -69,7 +85,7 @@ function initCustomCursor() {
   document.body.style.cursor = 'none';
   
   // Show custom cursor on hoverable elements
-  const hoverableElements = document.querySelectorAll('a, button, .project-card, .skill-item, .theme-toggle-btn');
+  const hoverableElements = document.querySelectorAll('a, button, .project-card, .skill-item, .light-switch-btn');
   
   hoverableElements.forEach(element => {
     element.addEventListener('mouseenter', () => {
@@ -86,10 +102,119 @@ function initCustomCursor() {
   });
 }
 
+// Hero typing animation
+function initHeroTyping() {
+  const el = document.getElementById('typingText');
+  if (!el) return;
+
+  const fullLine = "I'm seeking Fullstack Web Developer · UI/UX Designer · IT/Cybersecurity";
+  let charIndex = 0;
+  const typeSpeed = 60;
+
+  function type() {
+    if (charIndex < fullLine.length) {
+      el.textContent = fullLine.substring(0, charIndex + 1);
+      charIndex++;
+      setTimeout(type, typeSpeed);
+    }
+  }
+
+  setTimeout(type, 500);
+}
+
+// Audio Player Widget
+function initAudioPlayer() {
+  const player = document.getElementById('audioPlayer');
+  const audio = document.getElementById('audioSource');
+  const playBtn = document.getElementById('audioPlay');
+  const progressBar = document.getElementById('audioProgress');
+  const progressFill = document.getElementById('audioProgressFill');
+  const currentTimeEl = document.getElementById('audioCurrentTime');
+  const durationEl = document.getElementById('audioDuration');
+  const closeBtn = document.getElementById('audioPlayerClose');
+  const volumeSlider = document.getElementById('audioVolume');
+
+  if (!player || !audio || !playBtn) return;
+
+ 
+  audio.volume = 0.1;
+  if (volumeSlider) volumeSlider.value = 20;
+
+  function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = Math.floor(seconds % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().catch(() => {});
+      playBtn.classList.add('playing');
+      playBtn.setAttribute('aria-label', 'Pause');
+    } else {
+      audio.pause();
+      playBtn.classList.remove('playing');
+      playBtn.setAttribute('aria-label', 'Play');
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const percent = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+    progressBar.value = percent;
+    if (progressFill) progressFill.style.width = percent + '%';
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+  });
+
+  audio.addEventListener('loadedmetadata', () => {
+    durationEl.textContent = formatTime(audio.duration);
+  });
+
+  audio.addEventListener('ended', () => {
+    playBtn.classList.remove('playing');
+    playBtn.setAttribute('aria-label', 'Play');
+    progressBar.value = 0;
+    if (progressFill) progressFill.style.width = '0%';
+    currentTimeEl.textContent = '0:00';
+  });
+
+  progressBar.addEventListener('input', (e) => {
+    const percent = e.target.value;
+    if (progressFill) progressFill.style.width = percent + '%';
+    if (audio.duration) {
+      audio.currentTime = (percent / 100) * audio.duration;
+    }
+  });
+
+  if (volumeSlider) {
+    volumeSlider.addEventListener('input', (e) => {
+      audio.volume = e.target.value / 100;
+    });
+  }
+
+  const toggleBtn = document.getElementById('audioPlayerToggle');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      player.classList.add('collapsed');
+      if (toggleBtn) toggleBtn.classList.add('visible');
+      audio.pause();
+      playBtn.classList.remove('playing');
+    });
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      player.classList.remove('collapsed');
+      toggleBtn.classList.remove('visible');
+    });
+  }
+}
+
 // Shooting Stars Animation
 function initShootingStars() {
   const shootingStarsContainer = document.querySelector('.shooting-stars');
-  
+  if (!shootingStarsContainer) return;
+
   function createShootingStar() {
     const star = document.createElement('div');
     star.className = 'shooting-star';
@@ -123,7 +248,8 @@ function initShootingStars() {
 // Solar System and Astronomer Effects
 function initSolarSystem() {
   const astronomicalBg = document.querySelector('.astronomical-bg');
-  
+  if (!astronomicalBg) return;
+
   // Create multiple astronomers
   for (let i = 0; i < 3; i++) {
     const astronomer = document.createElement('div');
@@ -308,7 +434,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initShootingStars();
   initEnhancedMouseEffects();
   initSolarSystem();
-  
+  initHeroTyping();
+
   // Add float animation to hero image
   const heroImage = document.querySelector('.image-wrapper img:first-child');
   if (heroImage) {
@@ -339,6 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFinalSolution();
   initProjectOverview();
   initProjectsSection();
+  initAudioPlayer();
 });
 
 // Event Listeners

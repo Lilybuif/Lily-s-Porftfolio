@@ -3,20 +3,21 @@
 
 /* Light/Dark Theme Variables */
 :root {
-  /* Dark Theme (Default) - Dark Blue with Grey */
-  --primary-color: #1e3a8a;
-  --secondary-color: #3b82f6;
-  --text-color: #f1f5f9;
+  /* Dark Theme (Default) - Brighter colors for readability */
+  --primary-color: #60a5fa;
+  --secondary-color: #93c5fd;
+  --text-color: #f8fafc;
+  --text-muted: #e2e8f0;
   --background-color: #0f172a;
-  --surface-color: rgba(30, 58, 138, 0.1);
-  --border-color: rgba(59, 130, 246, 0.2);
+  --surface-color: rgba(30, 58, 138, 0.15);
+  --border-color: rgba(96, 165, 250, 0.35);
   --shadow-color: rgba(0, 0, 0, 0.3);
   --heading-font: 'Playfair Display', serif;
   --body-font: 'Poppins', sans-serif;
-  --gradient-text: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-  --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --star-color: #64748b;
-  --star-glow: rgba(100, 116, 139, 0.8);
+  --gradient-text: linear-gradient(45deg, #60a5fa, #93c5fd);
+  --text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --star-color: #94a3b8;
+  --star-glow: rgba(148, 163, 184, 0.8);
 }
 
 [data-theme="light"] {
@@ -24,6 +25,7 @@
   --primary-color: #1e40af;
   --secondary-color: #3b82f6;
   --text-color: #0f172a;
+  --text-muted: #334155;
   --background-color: #f8fafc;
   --surface-color: rgba(15, 23, 42, 0.05);
   --border-color: rgba(15, 23, 42, 0.1);
@@ -1324,7 +1326,7 @@ button:hover, .btn:hover {
 }
 
 .project-text p {
-  color: #ccc;
+  color: var(--text-muted);
   font-size: 1.1rem;
   line-height: 1.6;
 }
@@ -1529,14 +1531,14 @@ button:hover, .btn:hover {
 .project-card h3 {
   font-size: 1.2rem;
   margin-bottom: 0.5rem;
-  color: #ccc;
+  color: var(--text-muted);
 }
 
 .project-card p {
   font-size: 0.95rem;
   color: #444;
   margin-bottom: 1rem;
-   color: #ccc;
+   color: var(--text-muted);
 }
 
 .case-link {
@@ -1717,7 +1719,7 @@ button:hover, .btn:hover {
 .index-project-text p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 1rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
@@ -1793,7 +1795,7 @@ button:hover, .btn:hover {
 
 .project-subtitle {
   font-size: 1.5rem;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 2rem;
 }
 
@@ -2105,7 +2107,7 @@ h1 {
 }
 
 .info-card p {
-  color: #ddd;
+  color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.5;
   margin: 0;
@@ -2383,7 +2385,7 @@ h1 {
 .project-section p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -2731,7 +2733,7 @@ h1 {
 .solution-overview p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 3rem;
   text-align: center;
 }
@@ -2825,7 +2827,7 @@ h1 {
 .feature p {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
 }
 
@@ -2883,7 +2885,7 @@ h1 {
   padding: 1.5rem 2rem;
   border-radius: 10px;
   font-size: 1.2rem;
-  color: #ddd;
+  color: var(--text-muted);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -3025,7 +3027,7 @@ h1 {
 .meta-item p {
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #ddd;
+  color: var(--text-muted);
 }
 
 /* Overview Content - Enhanced */
@@ -3066,7 +3068,7 @@ h1 {
 .overview-content p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #ddd;
+  color: var(--text-muted);
   position: relative;
   z-index: 1;
 }
@@ -3878,7 +3880,7 @@ h1 {
 }
 
 .project-card p {
-  color: #ccc;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 1.5rem;
   transition: color 0.3s ease;
@@ -4020,7 +4022,7 @@ h1 {
 .about-text p {
   font-size: 1.2rem;
   line-height: 1.8;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
   opacity: 0;
   animation: fadeInUp 1s ease forwards;
@@ -4097,10 +4099,10 @@ h1 {
 }
 
 .habit-card {
-  background: rgba(248, 247, 247, 0.141);
+  background: var(--surface-color);
   border-radius: 20px;
   padding: 2rem;
-  border: 1px solid rgba(4, 4, 4, 0.1);
+  border: 1px solid var(--border-color);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -4149,13 +4151,22 @@ h1 {
 .habit-card span {
   display: block;
   font-size: 1.1rem;
-  color: #fdfbfb;
+  color: var(--text-color);
   line-height: 1.6;
   transition: color 0.3s ease;
 }
 
 .habit-card:hover span {
-  color: #fff;
+  color: var(--text-color);
+}
+
+[data-theme="light"] .habit-card {
+  background: rgba(248, 250, 252, 0.9);
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+[data-theme="light"] .habit-card span {
+  color: #334155;
 }
 
 /* Contact Section */
@@ -4188,7 +4199,7 @@ h1 {
 
 .contact p {
   font-size: 1.2rem;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -4379,7 +4390,7 @@ h1 {
 
 .gallery-intro {
   font-size: 1.2rem;
-  color: #ddd;
+  color: var(--text-muted);
   margin-bottom: 3rem;
   max-width: 600px;
   margin-left: auto;
@@ -4603,7 +4614,7 @@ h1 {
 
 .gallery-caption p {
   font-size: 1rem;
-  color: #ddd;
+  color: var(--text-muted);
 }
 
 /* Responsive Design */
@@ -4992,7 +5003,7 @@ html {
 
 .projects-intro {
   font-size: 1.2rem;
-  color: #ddd;
+  color: var(--text-muted);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -5068,7 +5079,7 @@ html {
 
 .project-content p {
   font-size: 1rem;
-  color: #ddd;
+  color: var(--text-muted);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
