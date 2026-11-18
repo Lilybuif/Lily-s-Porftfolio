@@ -1327,31 +1327,6 @@ body,
   display: none !important;
 }
 
-body.cozy-bg {
-  height: 100svh;
-  min-height: 100svh;
-  overflow: hidden;
-}
-
-.workspace-hero {
-  height: 100svh !important;
-  min-height: 100svh !important;
-  box-sizing: border-box;
-  padding: 72px 0 0 !important;
-}
-
-.workspace-hero-frame {
-  height: 100% !important;
-}
-
-@media (max-width: 768px) {
-  .workspace-hero {
-    height: 100svh !important;
-    min-height: 100svh !important;
-    padding: 64px 0 0 !important;
-  }
-}
-
 /* Footer - minimalist style */
 .footer-minimal .footer-accent {
   color: #e879f9;
