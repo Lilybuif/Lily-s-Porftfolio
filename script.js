@@ -429,7 +429,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Add animation classes to elements
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize new features
-  initThemeToggle();
   initCustomCursor();
   initShootingStars();
   initEnhancedMouseEffects();

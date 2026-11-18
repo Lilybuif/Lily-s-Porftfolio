@@ -1,6 +1,5 @@
 /* Custom styles for portfolio - cosmic theme effects */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
   --bg-dark: #0e091d;
@@ -15,7 +14,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', 'Inter', sans-serif;
 }
 
 /* Scroll offset for fixed nav */
@@ -54,6 +53,90 @@ html {
 }
 
 /* Starfield background - animated space theme */
+.cozy-bg {
+  background: #f9eadf;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  color: #5f4a43;
+}
+
+.cozy-bg .navbar {
+  background: rgba(249, 234, 223, 0.88);
+  border-bottom: 1px solid rgba(95, 74, 67, 0.12);
+  backdrop-filter: blur(14px);
+  z-index: 50;
+  height: 72px;
+  box-sizing: border-box;
+}
+
+.cozy-bg .navbar .logo-image img {
+  height: 64px;
+}
+
+.cozy-bg .navbar a {
+  color: #5f4a43;
+}
+
+.cozy-bg .navbar a:hover {
+  color: #a95f68;
+}
+
+.cozy-bg::before,
+.cozy-bg::after,
+.cozy-bg .space-bg-layers,
+.cozy-bg .light-mode-bg-overlay,
+.cozy-bg .custom-cursor,
+.cozy-bg .cursor-trail {
+  display: none;
+}
+
+.cozy-bg .gradient-text,
+.cozy-bg h1,
+.cozy-bg h2,
+.cozy-bg h3 {
+  background: linear-gradient(90deg, #a95f68, #7d9068);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+}
+
+.cozy-bg .card-glow {
+  background: rgba(255, 250, 245, 0.9);
+  border: 1px solid rgba(95, 74, 67, 0.12);
+  box-shadow: 0 12px 36px rgba(95, 74, 67, 0.08);
+}
+
+.cozy-bg .text-gray-300,
+.cozy-bg .text-gray-400,
+.cozy-bg .text-gray-500,
+.cozy-bg [class*="text-gray"] {
+  color: #80685f !important;
+}
+
+.cozy-bg .text-white {
+  color: #5f4a43 !important;
+}
+
+.cozy-bg .btn-gradient {
+  background: linear-gradient(135deg, #df9a9a, #b9a0a5);
+  color: #fff !important;
+  box-shadow: 0 8px 22px rgba(223, 154, 154, 0.28);
+}
+
+.cozy-bg footer {
+  background: rgba(249, 234, 223, 0.8);
+  border-color: rgba(95, 74, 67, 0.12) !important;
+}
+
+.cozy-bg input,
+.cozy-bg textarea {
+  background: rgba(255, 250, 245, 0.96) !important;
+  border-color: rgba(95, 74, 67, 0.16) !important;
+  color: #5f4a43 !important;
+}
+
 .starfield-bg {
   background: linear-gradient(to bottom, #020617 0%, #1e1b4b 50%, #020617 100%);
   min-height: 100vh;
@@ -1182,6 +1265,66 @@ html {
 [data-theme="light"] .audio-play-btn {
   background: linear-gradient(135deg, #3b82f6 0%, #7E48F8 100%);
   box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Cozy portfolio theme */
+body,
+.cozy-bg,
+.starfield-bg {
+  font-family: 'Poppins', sans-serif;
+  color: #5f4a43;
+  background: #f9eadf;
+}
+
+.cozy-bg h1,
+.cozy-bg h2,
+.cozy-bg h3,
+.starfield-bg h1,
+.starfield-bg h2,
+.starfield-bg h3 {
+  font-family: 'Playfair Display', serif;
+  color: #5f4a43;
+}
+
+.cozy-bg .gradient-text,
+.starfield-bg .gradient-text {
+  background: linear-gradient(90deg, #a95f68, #7d9068);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cozy-bg .text-purple-300,
+.cozy-bg .text-purple-400,
+.starfield-bg .text-purple-300,
+.starfield-bg .text-purple-400 {
+  color: #a95f68 !important;
+}
+
+.cozy-bg [class*="bg-[#7E48F8]"],
+.starfield-bg [class*="bg-[#7E48F8]"] {
+  background: #a95f68 !important;
+}
+
+.cozy-bg [class*="bg-[#7E48F8]/30"],
+.starfield-bg [class*="bg-[#7E48F8]/30"] {
+  background: rgba(169, 95, 104, 0.16) !important;
+}
+
+.cozy-bg .timeline-dot,
+.starfield-bg .timeline-dot {
+  background: #a95f68;
+  border-color: #f9eadf;
+}
+
+.cozy-bg [class*="border-[#7E48F8]"]:focus,
+.starfield-bg [class*="border-[#7E48F8]"]:focus {
+  border-color: #a95f68 !important;
+}
+
+.audio-player-toggle,
+.audio-player-widget {
+  display: none !important;
 }
 
 /* Footer - minimalist style */
